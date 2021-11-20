@@ -28,6 +28,15 @@ function HomePageFallback(): JSX.Element {
 const HomePageSuspending = () => {
   const styleContext = useStyleContext();
   const [t] = useLanguageTranslation();
+  const [, setTs] = React.useState(new Date().getUTCMilliseconds());
+  const updateCallback = React.useCallback(
+    () => setTs(new Date().getUTCMilliseconds()),
+    [setTs]
+  );
+  React.useEffect(() => {
+    wordStore.registerOnUpdateCallback(updateCallback);
+  }, []);
+
   const words = wordStore.getCurrentDataAdapted().words;
   return (
     <div css={homePageSuspendingStyle(styleContext)}>

@@ -55,20 +55,20 @@ class WordStore extends AbstractStore<WordStoreData, AdaptedWords> {
     return {
       words:
         data.spreadSheetCellRoot?.get().values.map((entry) => ({
-          sex: this.adaptSex(entry[0]),
+          sex: this.adaptSex(entry[0] as any),
           singular: entry[1],
           plural: entry[2],
         })) ?? [],
     };
   }
 
-  private adaptSex(sex: WordCellResponse.Sex): Sex {
+  private adaptSex(sex: "maennlech" | "weiblech" | "neutrum"): Sex {
     switch (sex) {
-      case WordCellResponse.Sex.maennlech:
+      case "maennlech":
         return Sex.M;
-      case WordCellResponse.Sex.weiblech:
+      case "weiblech":
         return Sex.W;
-      case WordCellResponse.Sex.neutrum:
+      case "neutrum":
         return Sex.N;
     }
   }
