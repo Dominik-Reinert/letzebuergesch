@@ -35,6 +35,7 @@ const HomePageSuspending = () => {
   );
   React.useEffect(() => {
     wordStore.registerOnUpdateCallback(updateCallback);
+    return () => wordStore.removeOnUpdateCallback(updateCallback);
   }, []);
 
   const words = wordStore.getCurrentDataAdapted().words;
