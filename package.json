@@ -2,6 +2,7 @@
   "name": "project-template",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://Dominik-Reinert.github.io/letzebuergesch",
   "dependencies": {
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.4.0",
@@ -39,7 +40,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "set CI=true && react-scripts test"
+    "test": "set CI=true && react-scripts test",
+    "predeploy": "react-scripts build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
