@@ -9,8 +9,7 @@ export function Navbar(): JSX.Element {
   return (
     <div css={navbarStyle(styleContext)}>
       <div className="page-name-wrapper">
-        <img className="logo" src="./home.svg" alt="logo" />
-        <span className="page-name">project template</span>
+        <span className="page-name">Lëtzebuergesch Wierder matchen</span>
       </div>
     </div>
   );

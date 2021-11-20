@@ -20,7 +20,7 @@ function App() {
               <Route path={Routes.home}>
                 <HomePage />
               </Route>
-              <Route path="/">
+              <Route path="/letzebuergesch">
                 <Redirect to={Routes.home} />
               </Route>
             </Switch>

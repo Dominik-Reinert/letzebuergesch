@@ -29,16 +29,16 @@ export interface StyleContext {
 
 export const defaultStyles: StyleContext = {
   shades: {
-    text: "#FAFAFA",
-    selectedText: "#FFFFFF",
+    text: "#021216",
+    selectedText: "#02161b",
     border: "#808080",
     separation: "#808080",
     boxShadow: "#C0C0C0",
   },
   colors: {
-    cardBackground: "#FAFAFA",
-    highlight: "#ff3554",  
-  },  
+    cardBackground: "#f3fbfe",
+    highlight: "#ff3554",
+  },
   sizes: {
     font: {
       welcome: "60px",

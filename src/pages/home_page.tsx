@@ -2,6 +2,7 @@
 import { jsx } from "@emotion/react";
 import React from "react";
 import { useLanguageTranslation } from "../i18n";
+import { wordStore } from "../store/word_store";
 import { useStyleContext } from "../style_context/use_style_context";
 import { homePageStyle, homePageSuspendingStyle } from "./home_page_style";
 
@@ -25,11 +26,12 @@ function HomePageFallback(): JSX.Element {
 }
 
 const HomePageSuspending = () => {
-    const styleContext = useStyleContext();
-    const [t] = useLanguageTranslation();
-    return (
-      <div css={homePageSuspendingStyle(styleContext)}>
-        <div className="scrollable-content"></div>
-      </div>
-    );
-  };
+  const styleContext = useStyleContext();
+  const [t] = useLanguageTranslation();
+  const words = wordStore.getCurrentDataAdapted().words;
+  return (
+    <div css={homePageSuspendingStyle(styleContext)}>
+      <div className="scrollable-content"></div>
+    </div>
+  );
+};
