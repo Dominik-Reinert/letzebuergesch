@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/letzebuergesch/static/css/main.34364565.chunk.css",
-    "main.js": "/letzebuergesch/static/js/main.20698877.chunk.js",
-    "main.js.map": "/letzebuergesch/static/js/main.20698877.chunk.js.map",
+    "main.js": "/letzebuergesch/static/js/main.ca6bb1d0.chunk.js",
+    "main.js.map": "/letzebuergesch/static/js/main.ca6bb1d0.chunk.js.map",
     "runtime-main.js": "/letzebuergesch/static/js/runtime-main.74ef9bda.js",
     "runtime-main.js.map": "/letzebuergesch/static/js/runtime-main.74ef9bda.js.map",
     "static/js/2.b1629434.chunk.js": "/letzebuergesch/static/js/2.b1629434.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.74ef9bda.js",
     "static/js/2.b1629434.chunk.js",
     "static/css/main.34364565.chunk.css",
-    "static/js/main.20698877.chunk.js"
+    "static/js/main.ca6bb1d0.chunk.js"
   ]
 }
