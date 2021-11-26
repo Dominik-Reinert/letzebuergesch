@@ -10,7 +10,7 @@ export interface AdaptedWords {
 interface Word {
   sex: Sex;
   singular: string;
-  plural: string;
+  translation: string;
 }
 
 export enum Sex {
@@ -57,7 +57,7 @@ class WordStore extends AbstractStore<WordStoreData, AdaptedWords> {
         data.spreadSheetCellRoot?.get().values.map((entry) => ({
           sex: this.adaptSex(entry[0] as any),
           singular: entry[1],
-          plural: entry[2],
+          translation: entry[2],
         })) ?? [],
     };
   }

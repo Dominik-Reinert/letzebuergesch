@@ -30,9 +30,9 @@ function HomePageFallback(): JSX.Element {
 const nAllowedRule = ["h", "a", "t", "z", "i", "y", "e", "n", "d", "u", "o"];
 
 enum Article {
-  DE = "DE",
-  DEN = "DEN",
-  D = "D",
+  DE = "De",
+  DEN = "Den",
+  D = "D'",
 }
 
 enum ResolvedState {
@@ -44,6 +44,7 @@ const currentState: {
   index: number;
   showTranslation: boolean;
   resolvedState: ResolvedState;
+  resolvedArticle?: Article;
 } = proxy({
   index: 0,
   showTranslation: false,
@@ -61,15 +62,16 @@ const HomePageSuspending = () => {
 
   function transitionToOpen(): void {
     currentState.resolvedState = ResolvedState.OPEN;
+    currentState.resolvedArticle = undefined;
     currentState.showTranslation = false;
     currentState.index++;
   }
 
-  function transitionToIncorrect(): void {
+  function transitionToIncorrect(article: Article): void {
     currentState.resolvedState = ResolvedState.INCORRECT;
   }
 
-  function transitionToCorrect(): void {
+  function transitionToCorrect(article: Article): void {
     currentState.resolvedState = ResolvedState.CORRECT;
   }
 
@@ -80,21 +82,21 @@ const HomePageSuspending = () => {
   function handleArticleClick(article: Article): void {
     switch (article) {
       case Article.D:
-        currentWord.sex === Sex.WEIBLECH
-          ? transitionToCorrect()
-          : transitionToIncorrect();
+        [Sex.WEIBLECH, Sex.SAECHLECH].includes(currentWord.sex)
+          ? transitionToCorrect(article)
+          : transitionToIncorrect(article);
         break;
       case Article.DE:
-        currentWord.sex !== Sex.WEIBLECH &&
+        currentWord.sex === Sex.MAENNLECH &&
         !nAllowedRule.includes(currentWord.singular[0])
-          ? transitionToCorrect()
-          : transitionToIncorrect();
+          ? transitionToCorrect(article)
+          : transitionToIncorrect(article);
         break;
       case Article.DEN:
-        currentWord.sex !== Sex.WEIBLECH &&
+        currentWord.sex === Sex.MAENNLECH &&
         nAllowedRule.includes(currentWord.singular[0])
-          ? transitionToCorrect()
-          : transitionToIncorrect();
+          ? transitionToCorrect(article)
+          : transitionToIncorrect(article);
     }
   }
 
@@ -112,42 +114,53 @@ const HomePageSuspending = () => {
         transitionToOpen()
       }
     >
-      <div className={`word-card ${resolvedStateClass}`}>
-        <div onClick={() => showTranslation()}>question mark</div>
-        <div>{currentWord?.singular}</div>
-        <div>{componentState.showTranslation && "übersetzung"}</div>
-      </div>
-      <div>
-        <span
-          className={`article-option ${
-            currentWord?.sex === Sex.WEIBLECH ? resolvedStateClass : ""
-          }`}
-          onClick={() => handleArticleClick(Article.D)}
-        >
-          d'
-        </span>
-        <span
-          className={`article-option ${
-            currentWord?.sex === Sex.MAENNLECH &&
-            !nAllowedRule.includes(currentWord?.singular[0])
-              ? resolvedStateClass
-              : ""
-          }`}
-          onClick={() => handleArticleClick(Article.DE)}
-        >
-          de
-        </span>
-        <span
-          className={`article-option ${
-            currentWord?.sex === Sex.MAENNLECH &&
-            nAllowedRule.includes(currentWord?.singular[0])
-              ? resolvedStateClass
-              : ""
-          }`}
-          onClick={() => handleArticleClick(Article.DEN)}
-        >
-          den
-        </span>
+      <div className="width-wrapper">
+        <div className={`word-card ${resolvedStateClass}`}>
+          <div className="help" onClick={() => showTranslation()}>
+            <span>?</span>
+          </div>
+          <div className="word">
+            <span>{currentWord?.singular}</span>
+          </div>
+          <div className="translation">
+            <span>
+              {componentState.showTranslation &&
+                `(${currentWord?.translation})`}
+            </span>
+          </div>
+        </div>
+        <div className="articles">
+          <span
+            className={`article-option ${
+              componentState.resolvedArticle === Article.D
+                ? resolvedStateClass
+                : ""
+            }`}
+            onClick={() => handleArticleClick(Article.D)}
+          >
+            {Article.D}
+          </span>
+          <span
+            className={`article-option ${
+              componentState.resolvedArticle === Article.DE
+                ? resolvedStateClass
+                : ""
+            }`}
+            onClick={() => handleArticleClick(Article.DE)}
+          >
+            {Article.DE}
+          </span>
+          <span
+            className={`article-option ${
+              componentState.resolvedArticle === Article.DEN
+                ? resolvedStateClass
+                : ""
+            }`}
+            onClick={() => handleArticleClick(Article.DEN)}
+          >
+            {Article.DEN}
+          </span>
+        </div>
       </div>
     </div>
   );
