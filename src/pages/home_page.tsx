@@ -81,6 +81,10 @@ const HomePageSuspending = () => {
     currentState.showTranslation = true;
   }
 
+  function restart(): void {
+    currentState.index = 0;
+  }
+
   function handleArticleClick(article: Article): void {
     switch (article) {
       case Article.D:
@@ -118,8 +122,9 @@ const HomePageSuspending = () => {
     >
       <div className="width-wrapper">
         <div className={`word-card ${resolvedStateClass}`}>
-          <div className="help" onClick={() => showTranslation()}>
-            <span>?</span>
+          <div className="help">
+            <span onClick={() => restart()}>nei starten</span>
+            <span onClick={() => showTranslation()}>?</span>
           </div>
           <div className="word">
             <span>{currentWord?.singular}</span>

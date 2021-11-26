@@ -109,12 +109,13 @@ export function homePageSuspendingStyle(
       flex: 4 0 0;
       font-size: ${styleContext.sizes.font.text};
       align-self: flex-end;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
 
       span {
         width: 10px;
         height: 10px;
-        border-radius: 50%;
-        box-shadow: 2px 2px 5px 1px rgb(0 0 0 / 40%);
         cursor: pointer;
       }
     }
