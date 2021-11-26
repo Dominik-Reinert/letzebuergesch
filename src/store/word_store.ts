@@ -13,10 +13,10 @@ interface Word {
   plural: string;
 }
 
-enum Sex {
-  M = "M",
-  W = "W",
-  N = "N",
+export enum Sex {
+  WEIBLECH = "WEIBLECH",
+  MAENNLECH = "MAENNLECH",
+  SAECHLECH = "SAECHLECH",
 }
 
 interface WordStoreData {
@@ -34,7 +34,7 @@ class WordStore extends AbstractStore<WordStoreData, AdaptedWords> {
       spreadSheetCellRoot: new ServerData<any>({
         fetch: () =>
           fetch(
-            `${baseUrl}${spreadsheetId}/values/A2:C${
+            `${baseUrl}${spreadsheetId}/values/A2:D${
               currentData.spreadSheetRoot.get().sheets[0].properties
                 .gridProperties.rowCount
             }?${apiKey}`
@@ -62,14 +62,14 @@ class WordStore extends AbstractStore<WordStoreData, AdaptedWords> {
     };
   }
 
-  private adaptSex(sex: "maennlech" | "weiblech" | "neutrum"): Sex {
+  private adaptSex(sex: "maennlech" | "weiblech" | "saechlech"): Sex {
     switch (sex) {
       case "maennlech":
-        return Sex.M;
+        return Sex.MAENNLECH;
       case "weiblech":
-        return Sex.W;
-      case "neutrum":
-        return Sex.N;
+        return Sex.WEIBLECH;
+      case "saechlech":
+        return Sex.SAECHLECH;
     }
   }
 }

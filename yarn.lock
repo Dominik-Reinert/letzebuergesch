@@ -7788,6 +7788,11 @@ lodash._reinterpolate@^3.0.0:
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
   integrity sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0=
 
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
+
 lodash.escape@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/lodash.escape/-/lodash.escape-4.0.1.tgz#c9044690c21e04294beaa517712fded1fa88de98"
@@ -9859,6 +9864,11 @@ proxy-addr@~2.0.5:
     forwarded "~0.1.2"
     ipaddr.js "1.9.1"
 
+proxy-compare@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/proxy-compare/-/proxy-compare-2.0.2.tgz#343e624d0ec399dfbe575f1d365d4fa042c9fc69"
+  integrity sha512-3qUXJBariEj3eO90M3Rgqq3+/P5Efl0t/dl9g/1uVzIQmO3M+ql4hvNH3mYdu8H+1zcKv07YvL55tsY74jmH1A==
+
 prr@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/prr/-/prr-1.0.1.tgz#d3fc114ba06995a45ec6893f484ceb1d78f5f476"
@@ -10687,6 +10697,14 @@ rollup@^1.31.1:
     "@types/estree" "*"
     "@types/node" "*"
     acorn "^7.1.0"
+
+rooks@^5.8.0:
+  version "5.8.0"
+  resolved "https://registry.yarnpkg.com/rooks/-/rooks-5.8.0.tgz#eb4612975f47d89283bb4376251595766024c6da"
+  integrity sha512-NCtqne2d6IRvxBjCJRls0DUrgQP5UOGFr8WrKFlnhtIdneZBuNaPRYK6RKYI+bDQvHYxml/M1TsS87yVzcLfVQ==
+  dependencies:
+    lodash.debounce "^4.0.8"
+    raf "^3.4.1"
 
 rst-selector-parser@^2.2.3:
   version "2.2.3"
@@ -12187,6 +12205,13 @@ validate-npm-package-license@^3.0.1:
   dependencies:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
+
+valtio@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/valtio/-/valtio-1.2.6.tgz#f80d38df0cd967374035c722bb9b12699bdf5ef0"
+  integrity sha512-TnGAdGAnbzj+K3WA8tKql6O6+7qXSDSYVoaWHFQp27twoNVyfJPPtHObZ79WLZ7I6N+aeWEO0bdO3yjq+GOWew==
+  dependencies:
+    proxy-compare "2.0.2"
 
 value-equal@^1.0.1:
   version "1.0.1"
