@@ -20,9 +20,6 @@ function App() {
               <Route path={Routes.home}>
                 <HomePage />
               </Route>
-              <Route path={Routes.base}>
-                <Redirect to={Routes.home} />
-              </Route>
               <Route path={"/"}>
                 <Redirect to={Routes.home} />
               </Route>

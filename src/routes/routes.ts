@@ -1,4 +1,3 @@
 export enum Routes {
-  base = "/letzebuergesch",
-  home = "/letzebuergesch/home",
+  home = "/letzebuergesch",
 }

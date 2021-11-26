@@ -53,7 +53,6 @@ const currentState: {
 
 const HomePageSuspending = () => {
   const styleContext = useStyleContext();
-  const [t] = useLanguageTranslation();
   useUpdateOnStoreChange(wordStore);
 
   const words = wordStore.getCurrentDataAdapted().words;
