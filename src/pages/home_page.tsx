@@ -69,10 +69,12 @@ const HomePageSuspending = () => {
 
   function transitionToIncorrect(article: Article): void {
     currentState.resolvedState = ResolvedState.INCORRECT;
+    currentState.resolvedArticle = article;
   }
 
   function transitionToCorrect(article: Article): void {
     currentState.resolvedState = ResolvedState.CORRECT;
+    currentState.resolvedArticle = article;
   }
 
   function showTranslation(): void {
