@@ -93,13 +93,13 @@ const HomePageSuspending = () => {
         break;
       case Article.DE:
         currentWord.sex === Sex.MAENNLECH &&
-        !nAllowedRule.includes(currentWord.singular[0])
+        !nAllowedRule.includes(currentWord.singular[0].toLocaleLowerCase())
           ? transitionToCorrect(article)
           : transitionToIncorrect(article);
         break;
       case Article.DEN:
         currentWord.sex === Sex.MAENNLECH &&
-        nAllowedRule.includes(currentWord.singular[0])
+        nAllowedRule.includes(currentWord.singular[0].toLocaleLowerCase())
           ? transitionToCorrect(article)
           : transitionToIncorrect(article);
     }
