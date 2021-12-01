@@ -15,7 +15,7 @@ function App() {
     <styleContext.Provider value={defaultStyles}>
       <ClearStyles>
         <Background>
-          <HashRouter basename="letzebuergesch">
+          <HashRouter>
             <Navbar />
             <Switch>
               <Route path={Routes.ARTICLE_MATCHEN}>
@@ -28,7 +28,7 @@ function App() {
                 <Redirect to={Routes.HOME} />
               </Route>
             </Switch>
-          </HashRouter>
+          </HashRouter=>
         </Background>
       </ClearStyles>
     </styleContext.Provider>
