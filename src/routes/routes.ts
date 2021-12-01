@@ -1,3 +1,3 @@
 export enum Routes {
-  home = "/letzebuergesch",
+  ARTICLE_MATCHEN = "/article-matchen",
 }
