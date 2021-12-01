@@ -1,7 +1,9 @@
 import { css, SerializedStyles } from "@emotion/react";
 import { StyleContext } from "../../style_context/style_context";
 
-export function articleMatchenPageStyle(styleContext: StyleContext): SerializedStyles {
+export function articleMatchenPageStyle(
+  styleContext: StyleContext
+): SerializedStyles {
   return css`
     label: ArticleMatchen-page;
 
@@ -48,7 +50,7 @@ export function articleMatchenPageSuspendingStyle(
       > * {
         flex: 1 0 0;
         color: ${styleContext.shades.text};
-        font-size: ${styleContext.sizes.font.text};
+        font-size: ${styleContext.sizes.font.smallText};
         text-align: center;
       }
 
@@ -78,36 +80,19 @@ export function articleMatchenPageSuspendingStyle(
       justify-content: space-between;
     }
 
-    .articles {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-    }
-
     .word-card {
       display: flex;
       justify-content: space-between;
       flex-direction: column;
-      box-shadow: 2px 2px 5px 1px rgb(0 0 0 / 40%);
       background-color: white;
       height: 80%;
       border-radius: 4px;
       padding: 8px;
     }
 
-    .article-option {
-      width: 10%;
-      background-color: white;
-      border-radius: 4px;
-      box-shadow: 2px 2px 5px 1px rgb(0 0 0 / 40%);
-      vertical-align: middle;
-      text-align: center;
-      cursor: pointer;
-    }
-
     .help {
       flex: 4 0 0;
-      font-size: ${styleContext.sizes.font.text};
+      font-size: ${styleContext.sizes.font.smallText};
       align-self: flex-end;
       display: flex;
       width: 100%;
@@ -123,7 +108,7 @@ export function articleMatchenPageSuspendingStyle(
     .word {
       display: flex;
       flex: 12 0 0;
-      font-size: ${styleContext.sizes.font.headline};
+      font-size: ${styleContext.sizes.font.text};
       align-self: center;
 
       span {
@@ -134,11 +119,62 @@ export function articleMatchenPageSuspendingStyle(
 
     .translation {
       flex: 6 0 0;
-      font-size: ${styleContext.sizes.font.subHeadline};
+      font-size: ${styleContext.sizes.font.smallText};
       align-self: center;
 
       span {
         margin: auto;
+      }
+    }
+
+    .articles {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .article-option {
+      flex: 12 0 0;
+      border-radius: ${styleContext.sizes.borderRadius.selection};
+      height: ${styleContext.sizes.height.selection};
+      background-color: ${styleContext.shades.separation};
+      cursor: pointer;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    .article-option-label {
+      margin: auto;
+      color: ${styleContext.colors.cardBackground};
+      vertical-align: middle;
+      font-size: ${styleContext.sizes.font.text};
+    }
+
+    //desktop
+    @media only screen and (min-width: 768px) {
+      .articles {
+        flex-direction: row;
+      }
+
+      .article-option {
+        margin: 0 8px 0 8px;
+      }
+
+      .word-card {
+        box-shadow: 2px 2px 5px 1px rgb(0 0 0 / 40%);
+      }
+
+      .help {
+        font-size: ${styleContext.sizes.font.text};
+      }
+
+      .word {
+        font-size: ${styleContext.sizes.font.subHeadline};
+      }
+
+      .translation {
+        font-size: ${styleContext.sizes.font.text};
       }
     }
   `;

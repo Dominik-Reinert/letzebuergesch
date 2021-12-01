@@ -150,7 +150,7 @@ function ArticleOption(props: {
   }
 
   return (
-    <span
+    <div
       className={`article-option ${
         componentState.resolvedArticle === props.article
           ? props.resolvedStateClass
@@ -158,7 +158,7 @@ function ArticleOption(props: {
       }`}
       onClick={() => handleArticleClick(props.article)}
     >
-      {props.article}
-    </span>
+     <span className="article-option-label">{props.article}</span>
+    </div>
   );
 }

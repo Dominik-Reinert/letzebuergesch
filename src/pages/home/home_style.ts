@@ -14,8 +14,8 @@ export function homeStyle(styleContext: StyleContext): SerializedStyles {
 
     .list-element {
       width: 100%;
-      border-radius: 18px;
-      height: 36px;
+      border-radius: ${styleContext.sizes.borderRadius.selection};
+      height: ${styleContext.sizes.height.selection};
       background-color: ${styleContext.shades.separation};
       cursor: pointer;
       text-align: center;
@@ -27,5 +27,6 @@ export function homeStyle(styleContext: StyleContext): SerializedStyles {
       vertical-align: middle;
       font-size: ${styleContext.sizes.font.text};
     }
+
   `;
 }
