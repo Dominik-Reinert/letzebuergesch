@@ -6,6 +6,7 @@ import { ClearStyles } from "./clear_styles/clear_styles";
 import "./i18n";
 import { Navbar } from "./navbar/navbar";
 import { ArticleMatchenPage } from "./pages/article_matchen/article_matchen_page";
+import { HomePage } from "./pages/home/home";
 import { Routes } from "./routes/routes";
 import { defaultStyles, styleContext } from "./style_context/style_context";
 
@@ -20,8 +21,11 @@ function App() {
               <Route path={Routes.ARTICLE_MATCHEN}>
                 <ArticleMatchenPage />
               </Route>
+              <Route path={Routes.HOME}>
+                <HomePage />
+              </Route>
               <Route path={"/"}>
-                <Redirect to={Routes.ARTICLE_MATCHEN} />
+                <Redirect to={Routes.HOME} />
               </Route>
             </Switch>
           </HashRouter>
