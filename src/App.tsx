@@ -28,7 +28,7 @@ function App() {
                 <Redirect to={Routes.HOME} />
               </Route>
             </Switch>
-          </HashRouter=>
+          </HashRouter>
         </Background>
       </ClearStyles>
     </styleContext.Provider>

@@ -1,8 +1,8 @@
 {
-  "name": "project-template",
+  "name": "letzebuergesch",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://Dominik-Reinert.github.io/letzebuergesch",
+  "homepage": "http://Dominik-Reinert.github.io/letzebuergesch/",
   "dependencies": {
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.4.0",
