@@ -55,16 +55,6 @@ const ArticleMatchenPageSuspending = () => {
     currentState.index++;
   }
 
-  function transitionToIncorrect(article: Article): void {
-    currentState.resolvedState = ResolvedState.INCORRECT;
-    currentState.resolvedArticle = article;
-  }
-
-  function transitionToCorrect(article: Article): void {
-    currentState.resolvedState = ResolvedState.CORRECT;
-    currentState.resolvedArticle = article;
-  }
-
   function showTranslation(): void {
     currentState.showTranslation = true;
   }
@@ -73,33 +63,13 @@ const ArticleMatchenPageSuspending = () => {
     currentState.index = 0;
   }
 
-  function handleArticleClick(article: Article): void {
-    switch (article) {
-      case Article.D:
-        [Sex.WEIBLECH, Sex.SAECHLECH].includes(currentWord.sex)
-          ? transitionToCorrect(article)
-          : transitionToIncorrect(article);
-        break;
-      case Article.DE:
-        currentWord.sex === Sex.MAENNLECH &&
-        !nAllowedRule.includes(currentWord.singular[0].toLocaleLowerCase())
-          ? transitionToCorrect(article)
-          : transitionToIncorrect(article);
-        break;
-      case Article.DEN:
-        currentWord.sex === Sex.MAENNLECH &&
-        nAllowedRule.includes(currentWord.singular[0].toLocaleLowerCase())
-          ? transitionToCorrect(article)
-          : transitionToIncorrect(article);
-    }
-  }
-
   const resolvedStateClass =
     componentState.resolvedState === ResolvedState.CORRECT
       ? "correct"
       : componentState.resolvedState === ResolvedState.INCORRECT
       ? "incorrect"
       : "";
+
   return (
     <div
       css={articleMatchenPageSuspendingStyle(styleContext)}
@@ -125,38 +95,70 @@ const ArticleMatchenPageSuspending = () => {
           </div>
         </div>
         <div className="articles">
-          <span
-            className={`article-option ${
-              componentState.resolvedArticle === Article.D
-                ? resolvedStateClass
-                : ""
-            }`}
-            onClick={() => handleArticleClick(Article.D)}
-          >
-            {Article.D}
-          </span>
-          <span
-            className={`article-option ${
-              componentState.resolvedArticle === Article.DE
-                ? resolvedStateClass
-                : ""
-            }`}
-            onClick={() => handleArticleClick(Article.DE)}
-          >
-            {Article.DE}
-          </span>
-          <span
-            className={`article-option ${
-              componentState.resolvedArticle === Article.DEN
-                ? resolvedStateClass
-                : ""
-            }`}
-            onClick={() => handleArticleClick(Article.DEN)}
-          >
-            {Article.DEN}
-          </span>
+          {[Article.D, Article.DE, Article.DEN].map((article) => {
+            return (
+              <ArticleOption
+                key={`${article}-option`}
+                article={article}
+                resolvedStateClass={resolvedStateClass}
+              />
+            );
+          })}
         </div>
       </div>
     </div>
   );
 };
+
+function ArticleOption(props: {
+  article: Article;
+  resolvedStateClass: string;
+}): JSX.Element {
+  const componentState = useSnapshot(currentState);
+  const words = wordStore.getCurrentDataAdapted().words;
+  const currentWord = words[componentState.index];
+
+  function transitionToIncorrect(article: Article): void {
+    currentState.resolvedState = ResolvedState.INCORRECT;
+    currentState.resolvedArticle = article;
+  }
+
+  function transitionToCorrect(article: Article): void {
+    currentState.resolvedState = ResolvedState.CORRECT;
+    currentState.resolvedArticle = article;
+  }
+
+  function handleArticleClick(article: Article): void {
+    switch (article) {
+      case Article.D:
+        [Sex.WEIBLECH, Sex.SAECHLECH].includes(currentWord.sex)
+          ? transitionToCorrect(article)
+          : transitionToIncorrect(article);
+        break;
+      case Article.DE:
+        currentWord.sex === Sex.MAENNLECH &&
+        !nAllowedRule.includes(currentWord.singular[0].toLocaleLowerCase())
+          ? transitionToCorrect(article)
+          : transitionToIncorrect(article);
+        break;
+      case Article.DEN:
+        currentWord.sex === Sex.MAENNLECH &&
+        nAllowedRule.includes(currentWord.singular[0].toLocaleLowerCase())
+          ? transitionToCorrect(article)
+          : transitionToIncorrect(article);
+    }
+  }
+
+  return (
+    <span
+      className={`article-option ${
+        componentState.resolvedArticle === props.article
+          ? props.resolvedStateClass
+          : ""
+      }`}
+      onClick={() => handleArticleClick(props.article)}
+    >
+      {props.article}
+    </span>
+  );
+}
