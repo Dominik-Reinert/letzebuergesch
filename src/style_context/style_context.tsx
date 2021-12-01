@@ -23,6 +23,12 @@ export interface StyleContext {
     width: {
       content: string;
     };
+    height: {
+      selection: string;
+    };
+    borderRadius: {
+      selection: string;
+    };
   };
   padding: {};
 }
@@ -49,6 +55,12 @@ export const defaultStyles: StyleContext = {
     },
     width: {
       content: "70%",
+    },
+    height: {
+      selection: "32px",
+    },
+    borderRadius: {
+      selection: "16px",
     },
   },
   padding: {},
