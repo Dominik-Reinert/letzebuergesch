@@ -1,11 +1,12 @@
 import * as React from "react";
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
+import { HashRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
 import { Background } from "./background/background";
 import { ClearStyles } from "./clear_styles/clear_styles";
 import "./i18n";
 import { Navbar } from "./navbar/navbar";
-import { HomePage } from "./pages/home_page";
+import { ArticleMatchenPage } from "./pages/article_matchen/article_matchen_page";
+import { HomePage } from "./pages/home/home";
 import { Routes } from "./routes/routes";
 import { defaultStyles, styleContext } from "./style_context/style_context";
 
@@ -14,17 +15,20 @@ function App() {
     <styleContext.Provider value={defaultStyles}>
       <ClearStyles>
         <Background>
-          <BrowserRouter>
+          <HashRouter>
             <Navbar />
             <Switch>
-              <Route path={Routes.home}>
+              <Route path={Routes.ARTICLE_MATCHEN}>
+                <ArticleMatchenPage />
+              </Route>
+              <Route path={Routes.HOME}>
                 <HomePage />
               </Route>
               <Route path={"/"}>
-                <Redirect to={Routes.home} />
+                <Redirect to={Routes.HOME} />
               </Route>
             </Switch>
-          </BrowserRouter>
+          </HashRouter>
         </Background>
       </ClearStyles>
     </styleContext.Provider>

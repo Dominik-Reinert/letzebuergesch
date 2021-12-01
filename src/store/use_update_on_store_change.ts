@@ -10,5 +10,5 @@ export function useUpdateOnStoreChange(store: AbstractStore<any, any>): void {
   React.useEffect(() => {
     store.registerOnUpdateCallback(updateCallback);
     return () => store.removeOnUpdateCallback(updateCallback);
-  }, []);
+  }, [store, updateCallback]);
 }
