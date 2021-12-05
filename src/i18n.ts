@@ -9,7 +9,7 @@ enum SupportedLanguages {
 
 interface LanguageResource {
   welcome: string;
-  articleMatchenInstruction: string;
+  artikeleMatchenInstruction: string;
 }
 
 interface DefaultNamespaceWrapper {
@@ -24,14 +24,15 @@ const resources: LanguageResources = {
   de: {
     translation: {
       welcome: "Willkommen bei project template!",
-      articleMatchenInstruction:
+      artikeleMatchenInstruction:
         "Bitte warten Sie, während die Daten geladen werden.",
     },
   },
   en: {
     translation: {
       welcome: "Welcome to project template!",
-      articleMatchenInstruction: "Please wait while the data is being fetched.",
+      artikeleMatchenInstruction:
+        "Please wait while the data is being fetched.",
     },
   },
 };

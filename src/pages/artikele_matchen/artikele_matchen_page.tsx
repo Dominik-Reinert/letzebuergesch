@@ -5,20 +5,20 @@ import { proxy, useSnapshot } from "valtio";
 import { useUpdateOnStoreChange } from "../../store/use_update_on_store_change";
 import { Sex, wordStore } from "../../store/word_store";
 import { useStyleContext } from "../../style_context/use_style_context";
-import { ArticleMatchenPageFallback } from "./article_matchen_fallback";
-import { articleMatchenPageSuspendingStyle } from "./article_matchen_page_style";
+import { ArtikeleMatchenPageFallback } from "./artikele_matchen_fallback";
+import { artikeleMatchenPageSuspendingStyle } from "./artikele_matchen_page_style";
 
-export function ArticleMatchenPage(): JSX.Element {
+export function ArtikeleMatchenPage(): JSX.Element {
   return (
-    <React.Suspense fallback={<ArticleMatchenPageFallback />}>
-      <ArticleMatchenPageSuspending />
+    <React.Suspense fallback={<ArtikeleMatchenPageFallback />}>
+      <ArtikeleMatchenPageSuspending />
     </React.Suspense>
   );
 }
 
 const nAllowedRule = ["h", "a", "t", "z", "i", "y", "e", "n", "d", "u", "o"];
 
-enum Article {
+enum Artikele {
   DE = "De",
   DEN = "Den",
   D = "D'",
@@ -33,14 +33,14 @@ const currentState: {
   index: number;
   showTranslation: boolean;
   resolvedState: ResolvedState;
-  resolvedArticle?: Article;
+  resolvedArtikele?: Artikele;
 } = proxy({
   index: 0,
   showTranslation: false,
   resolvedState: ResolvedState.OPEN,
 });
 
-const ArticleMatchenPageSuspending = () => {
+const ArtikeleMatchenPageSuspending = () => {
   const styleContext = useStyleContext();
   useUpdateOnStoreChange(wordStore);
 
@@ -50,7 +50,7 @@ const ArticleMatchenPageSuspending = () => {
 
   function transitionToOpen(): void {
     currentState.resolvedState = ResolvedState.OPEN;
-    currentState.resolvedArticle = undefined;
+    currentState.resolvedArtikele = undefined;
     currentState.showTranslation = false;
     currentState.index++;
   }
@@ -72,7 +72,7 @@ const ArticleMatchenPageSuspending = () => {
 
   return (
     <div
-      css={articleMatchenPageSuspendingStyle(styleContext)}
+      css={artikeleMatchenPageSuspendingStyle(styleContext)}
       onClick={() =>
         componentState.resolvedState !== ResolvedState.OPEN &&
         transitionToOpen()
@@ -94,12 +94,12 @@ const ArticleMatchenPageSuspending = () => {
             </span>
           </div>
         </div>
-        <div className="articles">
-          {[Article.D, Article.DE, Article.DEN].map((article) => {
+        <div className="artikelen">
+          {[Artikele.D, Artikele.DE, Artikele.DEN].map((artikele) => {
             return (
-              <ArticleOption
-                key={`${article}-option`}
-                article={article}
+              <ArtikeleOption
+                key={`${artikele}-option`}
+                artikele={artikele}
                 resolvedStateClass={resolvedStateClass}
               />
             );
@@ -110,55 +110,55 @@ const ArticleMatchenPageSuspending = () => {
   );
 };
 
-function ArticleOption(props: {
-  article: Article;
+function ArtikeleOption(props: {
+  artikele: Artikele;
   resolvedStateClass: string;
 }): JSX.Element {
   const componentState = useSnapshot(currentState);
   const words = wordStore.getCurrentDataAdapted().words;
   const currentWord = words[componentState.index];
 
-  function transitionToIncorrect(article: Article): void {
+  function transitionToIncorrect(artikele: Artikele): void {
     currentState.resolvedState = ResolvedState.INCORRECT;
-    currentState.resolvedArticle = article;
+    currentState.resolvedArtikele = artikele;
   }
 
-  function transitionToCorrect(article: Article): void {
+  function transitionToCorrect(artikele: Artikele): void {
     currentState.resolvedState = ResolvedState.CORRECT;
-    currentState.resolvedArticle = article;
+    currentState.resolvedArtikele = artikele;
   }
 
-  function handleArticleClick(article: Article): void {
-    switch (article) {
-      case Article.D:
+  function handleArtikeleClick(artikele: Artikele): void {
+    switch (artikele) {
+      case Artikele.D:
         [Sex.WEIBLECH, Sex.SAECHLECH].includes(currentWord.sex)
-          ? transitionToCorrect(article)
-          : transitionToIncorrect(article);
+          ? transitionToCorrect(artikele)
+          : transitionToIncorrect(artikele);
         break;
-      case Article.DE:
+      case Artikele.DE:
         currentWord.sex === Sex.MAENNLECH &&
         !nAllowedRule.includes(currentWord.singular[0].toLocaleLowerCase())
-          ? transitionToCorrect(article)
-          : transitionToIncorrect(article);
+          ? transitionToCorrect(artikele)
+          : transitionToIncorrect(artikele);
         break;
-      case Article.DEN:
+      case Artikele.DEN:
         currentWord.sex === Sex.MAENNLECH &&
         nAllowedRule.includes(currentWord.singular[0].toLocaleLowerCase())
-          ? transitionToCorrect(article)
-          : transitionToIncorrect(article);
+          ? transitionToCorrect(artikele)
+          : transitionToIncorrect(artikele);
     }
   }
 
   return (
     <div
-      className={`article-option ${
-        componentState.resolvedArticle === props.article
+      className={`artikele-option ${
+        componentState.resolvedArtikele === props.artikele
           ? props.resolvedStateClass
           : ""
       }`}
-      onClick={() => handleArticleClick(props.article)}
+      onClick={() => handleArtikeleClick(props.artikele)}
     >
-     <span className="article-option-label">{props.article}</span>
+      <span className="artikele-option-label">{props.artikele}</span>
     </div>
   );
 }

@@ -11,8 +11,8 @@ const routeLabelMapping: {
   label: string;
 }[] = [
   {
-    route: Routes.ARTICLE_MATCHEN,
-    label: "Article matchen",
+    route: Routes.ARTIKELE_MATCHEN,
+    label: "Artikele matchen",
   },
 ];
 

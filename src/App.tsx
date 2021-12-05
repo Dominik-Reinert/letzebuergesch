@@ -5,7 +5,7 @@ import { Background } from "./background/background";
 import { ClearStyles } from "./clear_styles/clear_styles";
 import "./i18n";
 import { Navbar } from "./navbar/navbar";
-import { ArticleMatchenPage } from "./pages/article_matchen/article_matchen_page";
+import { ArtikeleMatchenPage } from "./pages/artikele_matchen/artikele_matchen_page";
 import { HomePage } from "./pages/home/home";
 import { Routes } from "./routes/routes";
 import { defaultStyles, styleContext } from "./style_context/style_context";
@@ -18,8 +18,8 @@ function App() {
           <HashRouter>
             <Navbar />
             <Switch>
-              <Route path={Routes.ARTICLE_MATCHEN}>
-                <ArticleMatchenPage />
+              <Route path={Routes.ARTIKELE_MATCHEN}>
+                <ArtikeleMatchenPage />
               </Route>
               <Route path={Routes.HOME}>
                 <HomePage />

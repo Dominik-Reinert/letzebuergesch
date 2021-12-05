@@ -1,11 +1,11 @@
 import { css, SerializedStyles } from "@emotion/react";
 import { StyleContext } from "../../style_context/style_context";
 
-export function articleMatchenPageStyle(
+export function artikeleMatchenPageStyle(
   styleContext: StyleContext
 ): SerializedStyles {
   return css`
-    label: ArticleMatchen-page;
+    label: ArtikeleMatchen-page;
 
     display: flex;
 
@@ -26,11 +26,11 @@ export function articleMatchenPageStyle(
   `;
 }
 
-export function articleMatchenPageSuspendingStyle(
+export function artikeleMatchenPageSuspendingStyle(
   styleContext: StyleContext
 ): SerializedStyles {
   return css`
-    label: ArticleMatchen-page;
+    label: ArtikeleMatchen-page;
     height: 80%;
 
     display: flex;
@@ -127,14 +127,14 @@ export function articleMatchenPageSuspendingStyle(
       }
     }
 
-    .articles {
+    .artikelen {
       display: flex;
       justify-content: space-between;
       flex-direction: column;
       width: 100%;
     }
 
-    .article-option {
+    .artikele-option {
       flex: 12 0 0;
       border-radius: ${styleContext.sizes.borderRadius.selection};
       height: ${styleContext.sizes.height.selection};
@@ -144,7 +144,7 @@ export function articleMatchenPageSuspendingStyle(
       margin-top: 16px;
     }
 
-    .article-option-label {
+    .artikele-option-label {
       margin: auto;
       color: ${styleContext.colors.cardBackground};
       vertical-align: middle;
@@ -153,11 +153,11 @@ export function articleMatchenPageSuspendingStyle(
 
     //desktop
     @media only screen and (min-width: 768px) {
-      .articles {
+      .artikelen {
         flex-direction: row;
       }
 
-      .article-option {
+      .artikele-option {
         margin: 0 8px 0 8px;
       }
 

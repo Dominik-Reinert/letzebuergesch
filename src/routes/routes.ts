@@ -1,4 +1,4 @@
 export enum Routes {
   HOME = "/home",
-  ARTICLE_MATCHEN = "/article-matchen",
+  ARTIKELE_MATCHEN = "/artikele-matchen",
 }
