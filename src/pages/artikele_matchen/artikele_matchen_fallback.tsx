@@ -9,7 +9,6 @@ export function ArtikeleMatchenPageFallback(): JSX.Element {
   return (
     <div css={artikeleMatchenPageStyle(styleContext)}>
       <span className="welcome">{t("welcome")}</span>
-      <span className="instruction">{t("artikeleMatchenInstruction")}</span>
     </div>
   );
 }

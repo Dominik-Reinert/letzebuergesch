@@ -3,13 +3,11 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import { initReactI18next, useTranslation } from "react-i18next";
 
 enum SupportedLanguages {
-  "en" = "en",
-  "de" = "de",
+  "lu" = "lu",
 }
 
 interface LanguageResource {
   welcome: string;
-  artikeleMatchenInstruction: string;
 }
 
 interface DefaultNamespaceWrapper {
@@ -21,18 +19,9 @@ type LanguageResources = {
 };
 
 const resources: LanguageResources = {
-  de: {
+  lu: {
     translation: {
-      welcome: "Willkommen bei project template!",
-      artikeleMatchenInstruction:
-        "Bitte warten Sie, während die Daten geladen werden.",
-    },
-  },
-  en: {
-    translation: {
-      welcome: "Welcome to project template!",
-      artikeleMatchenInstruction:
-        "Please wait while the data is being fetched.",
+      welcome: "Léiert lëtzebuergesch!",
     },
   },
 };
@@ -41,7 +30,7 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    fallbackLng: "en",
+    fallbackLng: "lu",
     resources: resources as any,
   });
 
