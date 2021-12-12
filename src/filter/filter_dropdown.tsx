@@ -13,11 +13,12 @@ interface BookAndChapter {
   chapter?: string;
 }
 
-const filterState: {
+export const filterState: {
   booksAndChapters: BookAndChapter[];
 } = proxy({
   booksAndChapters: [],
 });
+export const filterIdBookAndChapterSeparator = '-'
 
 export function FilterDropdown(): JSX.Element {
   useUpdateOnStoreChange(wordStore);
@@ -25,7 +26,7 @@ export function FilterDropdown(): JSX.Element {
     filterState.booksAndChapters = wordStore
       .getCurrentDataAdapted()
       .words.map(({ book, chapter }) => ({
-        id: `${book}-${chapter}`,
+        id: `${book}${filterIdBookAndChapterSeparator}${chapter}`,
         book,
         chapter,
         selected: true,

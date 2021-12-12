@@ -7,7 +7,7 @@ export interface AdaptedWords {
   words: Word[];
 }
 
-interface Word {
+export interface Word {
   sex: Sex;
   singular: string;
   translation: string;
