@@ -36,7 +36,7 @@ class WordStore extends AbstractStore<WordStoreData, AdaptedWords> {
       spreadSheetCellRoot: new ServerData<any>({
         fetch: () =>
           fetch(
-            `${baseUrl}${spreadsheetId}/values/A2:D${
+            `${baseUrl}${spreadsheetId}/values/A2:E${
               currentData.spreadSheetRoot.get().sheets[0].properties
                 .gridProperties.rowCount
             }?${apiKey}`
