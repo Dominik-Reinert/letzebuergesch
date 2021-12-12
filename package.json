@@ -42,6 +42,7 @@
     "power-assert": "^1.6.1"
   },
   "scripts": {
+    "compile": "tsc --project tsconfig.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "set CI=true && react-scripts test",

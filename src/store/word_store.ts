@@ -7,10 +7,12 @@ export interface AdaptedWords {
   words: Word[];
 }
 
-interface Word {
+export interface Word {
   sex: Sex;
   singular: string;
   translation: string;
+  book: string;
+  chapter: string;
 }
 
 export enum Sex {
@@ -34,7 +36,7 @@ class WordStore extends AbstractStore<WordStoreData, AdaptedWords> {
       spreadSheetCellRoot: new ServerData<any>({
         fetch: () =>
           fetch(
-            `${baseUrl}${spreadsheetId}/values/A2:D${
+            `${baseUrl}${spreadsheetId}/values/A2:E${
               currentData.spreadSheetRoot.get().sheets[0].properties
                 .gridProperties.rowCount
             }?${apiKey}`
@@ -54,11 +56,15 @@ class WordStore extends AbstractStore<WordStoreData, AdaptedWords> {
   protected adaptData(data: WordStoreData): AdaptedWords {
     return {
       words:
-        data.spreadSheetCellRoot?.get().values.map((entry) => ({
-          sex: this.adaptSex(entry[0] as any),
-          singular: entry[1],
-          translation: entry[2],
-        })) ?? [],
+        data.spreadSheetCellRoot
+          ?.get()
+          .values.map(([serverSex, singular, translation, book, chapter]) => ({
+            sex: this.adaptSex(serverSex as any),
+            singular,
+            translation,
+            book,
+            chapter,
+          })) ?? [],
     };
   }
 

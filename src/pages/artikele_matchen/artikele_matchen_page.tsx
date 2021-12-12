@@ -2,8 +2,12 @@
 import { jsx } from "@emotion/react";
 import React from "react";
 import { proxy, useSnapshot } from "valtio";
+import {
+  filterIdBookAndChapterSeparator,
+  filterState,
+} from "../../filter/filter_dropdown";
 import { useUpdateOnStoreChange } from "../../store/use_update_on_store_change";
-import { Sex, wordStore } from "../../store/word_store";
+import { Sex, Word, wordStore } from "../../store/word_store";
 import { useStyleContext } from "../../style_context/use_style_context";
 import { ArtikeleMatchenPageFallback } from "./artikele_matchen_fallback";
 import { artikeleMatchenPageSuspendingStyle } from "./artikele_matchen_page_style";
@@ -34,8 +38,26 @@ const currentState: {
   showTranslation: boolean;
   resolvedState: ResolvedState;
   resolvedArtikele?: Artikele;
+  filteredWords: () => Word[];
 } = proxy({
   index: 0,
+  filteredWords: () =>
+    wordStore.getCurrentDataAdapted().words.filter((word) =>
+      filterState.booksAndChapters
+        .filter((bookAndChapter) => bookAndChapter.selected)
+        .map((bookAndChapter) => {
+          const [book, chapter] = bookAndChapter.id.split(
+            filterIdBookAndChapterSeparator
+          );
+          return {
+            book,
+            chapter,
+          };
+        })
+        .find(
+          ({ book, chapter }) => book === word.book && chapter === word.chapter
+        )
+    ),
   showTranslation: false,
   resolvedState: ResolvedState.OPEN,
 });
@@ -44,9 +66,9 @@ const ArtikeleMatchenPageSuspending = () => {
   const styleContext = useStyleContext();
   useUpdateOnStoreChange(wordStore);
 
-  const words = wordStore.getCurrentDataAdapted().words;
+  useSnapshot(filterState);
   const componentState = useSnapshot(currentState);
-  const currentWord = words[componentState.index];
+  const currentWord = componentState.filteredWords()[componentState.index];
 
   function transitionToOpen(): void {
     currentState.resolvedState = ResolvedState.OPEN;
