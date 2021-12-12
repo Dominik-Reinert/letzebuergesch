@@ -4,7 +4,7 @@ import * as React from "react";
 import { useStyleContext } from "../style_context/use_style_context";
 import { dropdownComponentStyle } from "./dropdown_component_style";
 
-interface DropdownItem {
+export interface DropdownItem {
   id: string;
   label: string;
   selected: boolean;
@@ -29,13 +29,15 @@ export function DropdownComponent(props: DropdownComponentProps): JSX.Element {
   function renderItem(item: DropdownItem): JSX.Element {
     const { id, label, selected, onClick } = item;
     return (
-      <span
-        key={`${item.id}-${item.label}`}
-        className={`item ${selected ? "selected" : ""}`}
-        onClick={() => onClick(id)}
-      >
-        {label}
-      </span>
+      <div key={`${id}-${label}`} className="item">
+        <input
+          type="checkbox"
+          name={id}
+          checked={selected}
+          onChange={() => onClick(id)}
+        />
+        <label htmlFor={id}>{label}</label>
+      </div>
     );
   }
 
