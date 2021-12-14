@@ -31,7 +31,7 @@ export const navbarStyle = (styleContext: StyleContext) => css`
 
   .page-name {
     font-size: ${styleContext.sizes.font.text};
-    margin: 16px 16px 14px;
+    margin: 16px;
     color: ${styleContext.shades.text};
   }
 `;
