@@ -11,6 +11,7 @@ export interface StyleContext {
   colors: {
     cardBackground: string;
     highlight: string;
+    branding: string;
   };
   sizes: {
     font: {
@@ -44,6 +45,7 @@ export const defaultStyles: StyleContext = {
   colors: {
     cardBackground: "#f3fbfe",
     highlight: "#ff3554",
+    branding: "#b5e61d",
   },
   sizes: {
     font: {

@@ -10,7 +10,7 @@ export function Navbar(): JSX.Element {
   return (
     <div css={navbarStyle(styleContext)}>
       <div className="page-name-wrapper">
-        <span className="page-name">Lëtzebuergesch léieren</span>
+        <span className="page-name">Lëtzebuergesch</span>
         <FilterDropdown />
       </div>
     </div>
