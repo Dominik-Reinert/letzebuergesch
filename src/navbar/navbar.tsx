@@ -18,8 +18,8 @@ export function Navbar(): JSX.Element {
     <div css={navbarStyle(styleContext)}>
       <div className="page-name-wrapper">
         <span className="page-name">Lëtzebuergesch</span>
-        {shouldRenderFilterDropdown() && <FilterDropdown />}
       </div>
+      {shouldRenderFilterDropdown() && <FilterDropdown />}
     </div>
   );
 }

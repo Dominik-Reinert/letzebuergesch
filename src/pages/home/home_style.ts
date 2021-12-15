@@ -8,9 +8,9 @@ export function homeStyle(styleContext: StyleContext): SerializedStyles {
 
     display: flex;
     flex-direction: column;
-    margin: auto;
+    margin: 20px auto;
 
-    width: 30%;
+    width: 60%;
 
     .list-element {
       width: 100%;
@@ -27,6 +27,5 @@ export function homeStyle(styleContext: StyleContext): SerializedStyles {
       vertical-align: middle;
       font-size: ${styleContext.sizes.font.text};
     }
-
   `;
 }

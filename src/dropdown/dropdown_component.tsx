@@ -48,6 +48,7 @@ export function DropdownComponent(props: DropdownComponentProps): JSX.Element {
           <div className="number-selected">{numberOfSelectedItems}</div>
         )}
         <div className="label">{props.label}</div>
+        <span className={open ? "fas fa-angle-up" : "fas fa-angle-down"} />
       </div>
       {open && (
         <div className="items">

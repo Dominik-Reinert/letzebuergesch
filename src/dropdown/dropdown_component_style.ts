@@ -16,10 +16,11 @@ export function dropdownComponentStyle(
       align-items: center;
 
       color: ${styleContext.shades.text};
-      font-size: ${styleContext.sizes.font.text};
+      font-size: ${styleContext.sizes.font.smallText};
 
       .label {
-        margin: 8px 8px 8px ${numberOfSelectedItems > 0 ? "2px" : "4px"};
+        margin-right: 4px;
+        margin-left: ${numberOfSelectedItems > 0 ? "2px" : "4px"};
       }
     }
 
