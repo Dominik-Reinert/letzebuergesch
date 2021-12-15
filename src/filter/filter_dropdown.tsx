@@ -56,6 +56,7 @@ export function FilterDropdown(): JSX.Element {
   React.useEffect(() => {
     if (!componentState.initialized) {
       updateFiltersOnStoreUpdate();
+      filterState.initialized = true;
     }
   }, [updateFiltersOnStoreUpdate]);
 
