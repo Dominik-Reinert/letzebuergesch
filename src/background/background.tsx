@@ -7,8 +7,13 @@ export function Background(props: React.PropsWithChildren<{}>): JSX.Element {
   const styleContext = useStyleContext();
   const style = css`
     label: background;
-    background-color: ${styleContext.colors.cardBackground};
     height: 100%;
+    background-color: white;
+    
+    //desktop
+    @media only screen and (min-width: 768px) {
+      background-color: ${styleContext.colors.cardBackground};
+    }
   `;
   return <div css={style}>{props.children}</div>;
 }

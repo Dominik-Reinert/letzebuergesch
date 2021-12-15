@@ -18,7 +18,7 @@ export const filterState: {
 } = proxy({
   booksAndChapters: [],
 });
-export const filterIdBookAndChapterSeparator = '-'
+export const filterIdBookAndChapterSeparator = "-";
 
 export function FilterDropdown(): JSX.Element {
   useUpdateOnStoreChange(wordStore);
@@ -36,6 +36,7 @@ export function FilterDropdown(): JSX.Element {
           arr.findIndex((e) => e.id === bookAndChapter.id) === index
       );
   }, []);
+  const spreadSheetCellRoot = wordStore.getCurrentData().spreadSheetCellRoot;
   React.useEffect(() => {
     wordStore
       .getCurrentData()
@@ -48,10 +49,7 @@ export function FilterDropdown(): JSX.Element {
         .spreadSheetCellRoot?.removeOnUpdateCallback(
           updateFiltersOnStoreUpdate
         );
-  }, [
-    wordStore.getCurrentData().spreadSheetCellRoot,
-    updateFiltersOnStoreUpdate,
-  ]);
+  }, [spreadSheetCellRoot, updateFiltersOnStoreUpdate]);
   const componentState = useSnapshot(filterState);
 
   return (
