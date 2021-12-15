@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/letzebuergesch/static/css/main.34364565.chunk.css",
-    "main.js": "/letzebuergesch/static/js/main.445585b4.chunk.js",
-    "main.js.map": "/letzebuergesch/static/js/main.445585b4.chunk.js.map",
+    "main.css": "/letzebuergesch/static/css/main.86e9fb31.chunk.css",
+    "main.js": "/letzebuergesch/static/js/main.08b88f2e.chunk.js",
+    "main.js.map": "/letzebuergesch/static/js/main.08b88f2e.chunk.js.map",
     "runtime-main.js": "/letzebuergesch/static/js/runtime-main.8ff5b121.js",
     "runtime-main.js.map": "/letzebuergesch/static/js/runtime-main.8ff5b121.js.map",
-    "static/js/2.8d5d7517.chunk.js": "/letzebuergesch/static/js/2.8d5d7517.chunk.js",
-    "static/js/2.8d5d7517.chunk.js.map": "/letzebuergesch/static/js/2.8d5d7517.chunk.js.map",
+    "static/js/2.e536f248.chunk.js": "/letzebuergesch/static/js/2.e536f248.chunk.js",
+    "static/js/2.e536f248.chunk.js.map": "/letzebuergesch/static/js/2.e536f248.chunk.js.map",
     "static/js/3.81a80b22.chunk.js": "/letzebuergesch/static/js/3.81a80b22.chunk.js",
     "static/js/3.81a80b22.chunk.js.map": "/letzebuergesch/static/js/3.81a80b22.chunk.js.map",
     "index.html": "/letzebuergesch/index.html",
-    "static/css/main.34364565.chunk.css.map": "/letzebuergesch/static/css/main.34364565.chunk.css.map",
-    "static/js/2.8d5d7517.chunk.js.LICENSE.txt": "/letzebuergesch/static/js/2.8d5d7517.chunk.js.LICENSE.txt"
+    "static/css/main.86e9fb31.chunk.css.map": "/letzebuergesch/static/css/main.86e9fb31.chunk.css.map",
+    "static/js/2.e536f248.chunk.js.LICENSE.txt": "/letzebuergesch/static/js/2.e536f248.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.8ff5b121.js",
-    "static/js/2.8d5d7517.chunk.js",
-    "static/css/main.34364565.chunk.css",
-    "static/js/main.445585b4.chunk.js"
+    "static/js/2.e536f248.chunk.js",
+    "static/css/main.86e9fb31.chunk.css",
+    "static/js/main.08b88f2e.chunk.js"
   ]
 }
