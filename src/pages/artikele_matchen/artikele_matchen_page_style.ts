@@ -1,4 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react";
+import { desktopStyle } from "../../style_context/desktop_style_mixin";
 import { StyleContext } from "../../style_context/style_context";
 
 export function artikeleMatchenPageStyle(
@@ -149,8 +150,7 @@ export function artikeleMatchenPageSuspendingStyle(
       font-size: ${styleContext.sizes.font.text};
     }
 
-    //desktop
-    @media only screen and (min-width: 768px) {
+    ${desktopStyle(`
       .artikelen {
         flex-direction: row;
       }
@@ -183,6 +183,6 @@ export function artikeleMatchenPageSuspendingStyle(
       span.fa-question-mark {
         font-size: ${styleContext.sizes.font.text};
       }
-    }
+    `)}
   `;
 }

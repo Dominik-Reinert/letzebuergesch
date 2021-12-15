@@ -14,8 +14,10 @@ interface BookAndChapter {
 }
 
 export const filterState: {
+  initialized: boolean;
   booksAndChapters: BookAndChapter[];
 } = proxy({
+  initialized: false,
   booksAndChapters: [],
 });
 export const filterIdBookAndChapterSeparator = "-";
@@ -51,6 +53,11 @@ export function FilterDropdown(): JSX.Element {
         );
   }, [spreadSheetCellRoot, updateFiltersOnStoreUpdate]);
   const componentState = useSnapshot(filterState);
+  React.useEffect(() => {
+    if (!componentState.initialized) {
+      updateFiltersOnStoreUpdate();
+    }
+  }, [updateFiltersOnStoreUpdate]);
 
   return (
     <DropdownComponent
