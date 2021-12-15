@@ -66,7 +66,7 @@ export function artikeleMatchenPageSuspendingStyle(
     }
 
     .correct {
-      background-color: green !important;
+      background-color: ${styleContext.colors.branding} !important;
     }
 
     .incorrect {
