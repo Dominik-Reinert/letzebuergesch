@@ -1,4 +1,5 @@
 import { css, SerializedStyles } from "@emotion/react";
+import { desktopStyle } from "../../style_context/desktop_style_mixin";
 import { StyleContext } from "../../style_context/style_context";
 
 export function artikeleMatchenPageStyle(
@@ -73,8 +74,8 @@ export function artikeleMatchenPageSuspendingStyle(
     }
 
     .width-wrapper {
-      width: 40%;
-      height: 50%;
+      width: 60%;
+      height: 80%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -93,14 +94,12 @@ export function artikeleMatchenPageSuspendingStyle(
     .help {
       flex: 4 0 0;
       font-size: ${styleContext.sizes.font.smallText};
-      align-self: flex-end;
       display: flex;
       width: 100%;
-      justify-content: space-between;
+      justify-content: flex-end;
 
       span {
-        width: 10px;
-        height: 10px;
+        font-size: ${styleContext.sizes.font.text};
         cursor: pointer;
       }
     }
@@ -108,7 +107,7 @@ export function artikeleMatchenPageSuspendingStyle(
     .word {
       display: flex;
       flex: 12 0 0;
-      font-size: ${styleContext.sizes.font.text};
+      font-size: ${styleContext.sizes.font.subHeadline};
       align-self: center;
 
       span {
@@ -151,8 +150,7 @@ export function artikeleMatchenPageSuspendingStyle(
       font-size: ${styleContext.sizes.font.text};
     }
 
-    //desktop
-    @media only screen and (min-width: 768px) {
+    ${desktopStyle(`
       .artikelen {
         flex-direction: row;
       }
@@ -173,9 +171,18 @@ export function artikeleMatchenPageSuspendingStyle(
         font-size: ${styleContext.sizes.font.subHeadline};
       }
 
+      .width-wrapper {
+        width: 40%;
+        height: 50%;
+      }
+
       .translation {
         font-size: ${styleContext.sizes.font.text};
       }
-    }
+
+      span.fa-question-mark {
+        font-size: ${styleContext.sizes.font.text};
+      }
+    `)}
   `;
 }

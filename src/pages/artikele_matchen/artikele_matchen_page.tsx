@@ -4,7 +4,7 @@ import React from "react";
 import { proxy, useSnapshot } from "valtio";
 import {
   filterIdBookAndChapterSeparator,
-  filterState,
+  filterState
 } from "../../filter/filter_dropdown";
 import { useUpdateOnStoreChange } from "../../store/use_update_on_store_change";
 import { Sex, Word, wordStore } from "../../store/word_store";
@@ -118,7 +118,10 @@ const ArtikeleMatchenPageSuspending = () => {
       <div className="width-wrapper">
         <div className={`word-card ${resolvedStateClass}`}>
           <div className="help">
-            <span onClick={() => showTranslation()}>?</span>
+            <span
+              className="fas fa-question-circle"
+              onClick={() => showTranslation()}
+            />
           </div>
           <div className="word">
             <span>{componentState.currentWord?.singular}</span>

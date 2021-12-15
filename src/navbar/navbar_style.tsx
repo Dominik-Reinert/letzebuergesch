@@ -5,11 +5,10 @@ export const navbarStyle = (styleContext: StyleContext) => css`
   label: navbar;
 
   display: flex;
-  width: ${styleContext.sizes.width.content};
-  height: 100px;
-
-  margin: auto;
-  padding: 12px 0;
+  background-color: ${styleContext.colors.branding};
+  height: 20px;
+  padding: 20px;
+  width: 100%;
 
   .page-name-wrapper {
     display: flex;
@@ -31,8 +30,8 @@ export const navbarStyle = (styleContext: StyleContext) => css`
   }
 
   .page-name {
-    font-size: ${styleContext.sizes.font.subHeadline};
-    margin: 16px 16px 14px;
+    font-size: ${styleContext.sizes.font.text};
+    margin: 16px;
     color: ${styleContext.shades.text};
   }
 `;
