@@ -25,13 +25,13 @@ const nAllowedRule = ["h", "a", "t", "z", "i", "y", "e", "n", "d", "u", "o"];
 enum Artikele {
   DE = "De",
   DEN = "Den",
-  D = "D'",
+  D = "D'"
 }
 
 enum ResolvedState {
   OPEN = "OPEN",
   CORRECT = "CORRECT",
-  INCORRECT = "INCORRECT",
+  INCORRECT = "INCORRECT"
 }
 const currentState: {
   showTranslation: boolean;
@@ -50,7 +50,7 @@ const currentState: {
           );
           return {
             book,
-            chapter,
+            chapter
           };
         })
         .find(
@@ -58,7 +58,7 @@ const currentState: {
         )
     ),
   showTranslation: false,
-  resolvedState: ResolvedState.OPEN,
+  resolvedState: ResolvedState.OPEN
 });
 
 /**

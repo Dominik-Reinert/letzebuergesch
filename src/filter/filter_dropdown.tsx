@@ -1,8 +1,9 @@
 /**@jsx jsx */
 import { jsx } from "@emotion/react";
 import * as React from "react";
-import { proxy, useSnapshot } from "valtio";
+import { useSnapshot } from "valtio";
 import { DropdownComponent } from "../dropdown/dropdown_component";
+import { localStorageProxy } from "../localstorage/local_storage_proxy";
 import { useUpdateOnStoreChange } from "../store/use_update_on_store_change";
 import { wordStore } from "../store/word_store";
 
@@ -16,10 +17,14 @@ interface BookAndChapter {
 export const filterState: {
   initialized: boolean;
   booksAndChapters: BookAndChapter[];
-} = proxy({
-  initialized: false,
-  booksAndChapters: [],
-});
+} = localStorageProxy(
+  "filterState",
+  {
+    initialized: false,
+    booksAndChapters: []
+  },
+  { allowMismatchingKeys: false }
+);
 export const filterIdBookAndChapterSeparator = "-";
 
 export function FilterDropdown(): JSX.Element {
@@ -27,12 +32,18 @@ export function FilterDropdown(): JSX.Element {
   const updateFiltersOnStoreUpdate = React.useCallback(() => {
     filterState.booksAndChapters = wordStore
       .getCurrentDataAdapted()
-      .words.map(({ book, chapter }) => ({
-        id: `${book}${filterIdBookAndChapterSeparator}${chapter}`,
-        book,
-        chapter,
-        selected: true,
-      }))
+      .words.map(({ book, chapter }) => {
+        const id = `${book}${filterIdBookAndChapterSeparator}${chapter}`;
+        return {
+          id,
+          book,
+          chapter,
+          selected:
+            filterState.booksAndChapters?.find(
+              (bookOrChapter) => bookOrChapter.id === id
+            )?.selected ?? false
+        };
+      })
       .filter(
         (bookAndChapter, index, arr) =>
           arr.findIndex((e) => e.id === bookAndChapter.id) === index
@@ -58,14 +69,14 @@ export function FilterDropdown(): JSX.Element {
       updateFiltersOnStoreUpdate();
       filterState.initialized = true;
     }
-  }, [updateFiltersOnStoreUpdate]);
+  }, [updateFiltersOnStoreUpdate, componentState.initialized]);
 
   return (
     <DropdownComponent
       items={componentState.booksAndChapters.map((bookOrChapter) => ({
         id: bookOrChapter.id,
         label: `${bookOrChapter.book} ${bookOrChapter.chapter}`,
-        selected: bookOrChapter.selected,
+        selected: bookOrChapter.selected
       }))}
       label="Bicher a Lektiounen"
       onSelect={(id) => {
