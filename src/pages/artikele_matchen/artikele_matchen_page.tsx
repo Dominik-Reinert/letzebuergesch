@@ -7,8 +7,14 @@ import {
   filterState
 } from "../../filter/filter_dropdown";
 import { useUpdateOnStoreChange } from "../../store/use_update_on_store_change";
-import { Sex, Word, wordStore } from "../../store/word_store";
+import {
+  Sex,
+  weightsFromLocalStorageState,
+  Word,
+  wordStore
+} from "../../store/word_store";
 import { useStyleContext } from "../../style_context/use_style_context";
+import { generateRandomTable } from "../../weighed_random/weighed_random";
 import { ArtikeleMatchenPageFallback } from "./artikele_matchen_fallback";
 import { artikeleMatchenPageSuspendingStyle } from "./artikele_matchen_page_style";
 
@@ -36,6 +42,8 @@ enum ResolvedState {
 const currentState: {
   showTranslation: boolean;
   resolvedState: ResolvedState;
+  wordsSinceLastShuffle: number;
+  shuffleSinceLastIncrease: number;
   currentWord?: Word;
   resolvedArtikele?: Artikele;
   filteredWords: () => Word[];
@@ -57,6 +65,8 @@ const currentState: {
           ({ book, chapter }) => book === word.book && chapter === word.chapter
         )
     ),
+  wordsSinceLastShuffle: 0,
+  shuffleSinceLastIncrease: 0,
   showTranslation: false,
   resolvedState: ResolvedState.OPEN
 });
@@ -81,9 +91,19 @@ const ArtikeleMatchenPageSuspending = () => {
   useSnapshot(filterState);
   const componentState = useSnapshot(currentState);
 
-  function getRandomWord(): Word {
-    return shuffleArray(componentState.filteredWords().slice(0))[0];
-  }
+  let getRandomWord = generateRandomTable(currentState.filteredWords());
+  React.useEffect(() => {
+    getRandomWord = generateRandomTable(currentState.filteredWords());
+    currentState.wordsSinceLastShuffle = 0;
+    currentState.shuffleSinceLastIncrease++;
+  }, [currentState.wordsSinceLastShuffle > 10]);
+
+  React.useEffect(() => {
+    weightsFromLocalStorageState.words.forEach((word) => {
+      word.weight += 5;
+    });
+    currentState.shuffleSinceLastIncrease = 0;
+  }, [currentState.shuffleSinceLastIncrease > 10]);
 
   if (componentState.currentWord === undefined) {
     currentState.currentWord = getRandomWord();
@@ -158,11 +178,23 @@ function ArtikeleOption(props: {
   function transitionToIncorrect(artikele: Artikele): void {
     currentState.resolvedState = ResolvedState.INCORRECT;
     currentState.resolvedArtikele = artikele;
+    currentState.wordsSinceLastShuffle++;
+    const currentWeight = weightsFromLocalStorageState.words.find(
+      (word) => word.singular === currentState.currentWord?.singular
+    );
+    currentWeight!.weight += 5;
   }
 
   function transitionToCorrect(artikele: Artikele): void {
     currentState.resolvedState = ResolvedState.CORRECT;
     currentState.resolvedArtikele = artikele;
+    currentState.wordsSinceLastShuffle++;
+    const currentWeight = weightsFromLocalStorageState.words.find(
+      (word) => word.singular === currentState.currentWord?.singular
+    );
+    if (currentWeight!.weight > 2) {
+      currentWeight!.weight -= 2;
+    }
   }
 
   function handleArtikeleClick(artikele: Artikele): void {
