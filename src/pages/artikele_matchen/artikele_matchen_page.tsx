@@ -43,6 +43,7 @@ const currentState: {
   showTranslation: boolean;
   resolvedState: ResolvedState;
   wordsSinceLastShuffle: number;
+  shuffleSinceLastIncrease: number;
   currentWord?: Word;
   resolvedArtikele?: Artikele;
   filteredWords: () => Word[];
@@ -65,6 +66,7 @@ const currentState: {
         )
     ),
   wordsSinceLastShuffle: 0,
+  shuffleSinceLastIncrease: 0,
   showTranslation: false,
   resolvedState: ResolvedState.OPEN
 });
@@ -93,7 +95,15 @@ const ArtikeleMatchenPageSuspending = () => {
   React.useEffect(() => {
     getRandomWord = generateRandomTable(currentState.filteredWords());
     currentState.wordsSinceLastShuffle = 0;
+    currentState.shuffleSinceLastIncrease++;
   }, [currentState.wordsSinceLastShuffle > 10]);
+
+  React.useEffect(() => {
+    weightsFromLocalStorageState.words.forEach((word) => {
+      word.weight += 5;
+    });
+    currentState.shuffleSinceLastIncrease = 0;
+  }, [currentState.shuffleSinceLastIncrease > 10]);
 
   if (componentState.currentWord === undefined) {
     currentState.currentWord = getRandomWord();
